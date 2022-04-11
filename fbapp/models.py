@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 
-from fbapp.views import app 
+from .views import app 
 import enum
 import logging as lg
 
@@ -25,7 +25,11 @@ class Content(db.Model):
 def init_db():
     db.drop_all()
     db.create_all()
-    db.session.add(Content("info2",Gender['male']))
-    db.session.add(Content("info1",Gender['female']))
+    db.session.add(Content("description pour homme1",Gender['male']))
+    db.session.add(Content("description pour femme1",Gender['female']))
+    db.session.add(Content("description pour homme2",Gender['male']))
+    db.session.add(Content("description pour femme2",Gender['female']))
+    db.session.add(Content("description pour homme3",Gender['male']))
+    db.session.add(Content("description pour femme3",Gender['female']))
     db.session.commit()
     lg.warning('db init')

@@ -1,6 +1,6 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, request, render_template, url_for
 
-
+from .utils import find_content
 
 app = Flask(__name__)
 
@@ -25,15 +25,22 @@ def index():
 
 @app.route('/result/')
 def result():
-    description= """
-      Toi, tu n'as pas peur d'être seul ! Les grands espaces et les aventures sont faits pour toi. D'ailleurs, Koh Lanta est ton émission préférée ! Bientôt tu partiras les cheveux au vent sur ton radeau. Tu es aussi un idéaliste chevronné. Quelle chance !
-    """
+    gender = request.args.get('gender')
+    description= find_content(gender).description
+    
+    uid = request.args.get('id')
+    user_name = request.args.get('first_name')
+    user_image = 'http://graph.facebook.com/'+uid+'/picture?type=large'
     return render_template('result.html',
-                        user_name = "TOM",
-                        user_image = url_for('static',filename='tmp/cover_111823112767411.jpg'),
+                        user_name = user_name,
+                        user_image = user_image,
                         description = description,
                         blur = True
                         )
+
+@app.route('/contents/<content_id>/')
+def content(content_id):
+    return content_id
 
 
 if __name__ == "__main__":
