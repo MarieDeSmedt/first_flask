@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 
-from controllers.views import app 
+from fbapp.views import app 
 import enum
 import logging as lg
 
