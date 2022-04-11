@@ -15,7 +15,7 @@ class Gender(enum.Enum):
 class Content(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(200), nullable= False)
-    genders = db.Column(db.Enum(Gender), nullable= False)
+    gender = db.Column(db.Enum(Gender), nullable= False)
 
     def __init__(self, description, gender):
         self.description = description
