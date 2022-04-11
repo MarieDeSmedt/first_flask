@@ -1,6 +1,6 @@
 from flask import Flask
-from .views import app
-from. import models
+from .controllers.views import app
+from .models import models
 
 #connect sqlalchemyto app
 models.db.init_app(app)
