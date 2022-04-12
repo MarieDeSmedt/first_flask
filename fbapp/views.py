@@ -28,21 +28,22 @@ def index():
 @app.route('/result/')
 def result():
     gender = request.args.get('gender')
-    description= find_content(gender).description
-    
-    uid = request.args.get('id')
     user_name = request.args.get('first_name')
-    user_image = 'http://graph.facebook.com/'+uid+'/picture?type=large'
+    uid = request.args.get('id')
+
+    description= find_content().description   
+    
+
+    user_image = 'http://graph.facebook.com/'+ uid +'/picture?type=large'
     return render_template('result.html',
                         user_name = user_name,
                         user_image = user_image,
-                        description = description,
-                        blur = True
+                        description = description
                         )
 
-@app.route('/contents/<content_id>/')
-def content(content_id):
-    return content_id
+# @app.route('/contents/<content_id>/')
+# def content(content_id):
+#     return content_id
 
 
 if __name__ == "__main__":
